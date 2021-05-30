@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // js预编译
+
+    //分析
+    // 1.创建了AO对象
+    // 2.找形参和变量的声明  作为AO对象的属性名  值是undefined
+    // 3.实参和形参统一
+    // 4.找函数声明 会覆盖变量的声明
+
+    // AO:{
+    //   a:undefined 1 function a
+    //   b:undefined
+    //   c:undefined 2 function c
+    //   d:undefined
+    // }
+
+    function fn(a, c) {
+      console.log(a);  //function a
+      var a = 123
+      console.log(a); // 123
+      console.log(c); // function c
+      function a() { }
+      if (false) {
+        var d = 678
+      }
+      console.log(d); //undefined
+      console.log(b); //undefined
+      var b = function () { }
+      console.log(b); // fn
+      function c() { }
+      console.log(c); //c-fn
+    }
+    fn(1, 2)
+
+
+  </script>
+</body>
+
+</html>

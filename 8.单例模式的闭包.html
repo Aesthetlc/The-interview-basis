@@ -12,7 +12,6 @@
     <button id="loginBtn">登录</button>
     <script>
         // 单例模式下的闭包
-
         var createLogin = function () {
             var div = document.createElement('div')
             div.innerHTML = '我是弹窗信息'
@@ -33,6 +32,27 @@
             var loginLay = create()
             loginLay.style.display = 'block'
         }
+
+        // 单例模式下的闭包（es6）
+        class Person {
+            constructor(name, age, products) {
+                this.name = name
+                this.age = age
+                this.products = products
+            }
+
+
+            static getInstance(name, age, products) {
+                if (!this.instance) {
+                    this.instance = new Person(name, age, products)
+                }
+                return this.instance
+            }
+        }
+
+        let test1 = Person.getInstance('zhangsan', '666', '语文')
+        let test2 = Person.getInstance('lisi', '777', '数学')
+
 
     </script>
 </body>

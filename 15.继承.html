@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>继承</div>
+    <script>
+        window.onload = function () {
+            // es5 继承
+            function Person(name, age) {
+                this.name = name
+                this.age = age
+            }
+
+            function Student(name, age, score) {
+                Person.call(this, name, age)
+                this.score = score
+            }
+
+            // 子类的原型对象 指向 父类的实例
+            // Student.prototype = new Person
+            Student.prototype = Object.create(Person.prototype)
+            Student.prototype.constructor = Student
+
+            var yrh = new Student('yrh', 18, 100)
+            console.log(yrh)
+            var per = new Person('ren', 100)
+            console.log(per)
+
+            //es6 继承
+            class Animal {
+                constructor(name, age) {
+                    this.name = name
+                    this.age = age
+                }
+            }
+
+            class dog extends Animal {
+                constructor(name, age, sex) {
+                    super(name, age)
+                    this.sex = sex
+                }
+            }
+
+            var xiaohua = new dog('xiaohua', 3, '母')
+            console.log(xiaohua)
+
+            var animals = new Animal('animal', 100)
+            console.log(animals)
+
+
+
+
+            const person = {
+                isHuman: false,
+                printIntroduction: function () {
+                    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+                }
+            };
+
+            const me = Object.create(person);
+
+            me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
+            me.isHuman = true; // inherited properties can be overwritten
+
+            me.printIntroduction();
+            // expected output: "My name is Matthew. Am I human? true"
+
+            console.log(person,me)
+
+        }
+    </script>
+</body>
+
+</html>

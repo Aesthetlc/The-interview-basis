@@ -24,13 +24,61 @@
       arr.forEach(item => {
         if (Array.isArray(item)) {
           fn(item)
-        }else{
+        } else {
           resultArr.push(item)
         }
       })
     }
     fn(arr)
     console.log(resultArr)
+
+    //方法4：reduce
+    // arr.reduce(function(prev,cur,index,arr){
+    // arr    表示原数组
+    // prev   表示上一次调用回调时的返回值  或者初始值init
+    // cur    表示当前正在处理的数组元素
+    // index  表示当前正在处理的数组元素的索引  若提供init值，则索引为0，否则索引为1
+    // init   表示初始值
+    // }, init)
+    var newArr = (arr => {
+      return arr.reduce((prev, cur) => {
+        return prev.concat(Array.isArray(cur) ? newArr(cur) : cur)
+      }, [])
+    })
+    console.log(newArr(arr))
+
+    // 求和    
+    let sumArr = [1, 2, 3, 4, 5]
+    let sum = sumArr.reduce((prev, cur) => {
+      return prev + cur
+    })
+    console.log(sum)
+
+    // 求出现的数
+    let nameArr = ['张三', '李四', '王五', '赵六', '张三']
+    const changeNameNum = (arr => {
+      return arr.reduce((prev, cur) => {
+        if (cur in prev) {
+          prev[cur]++
+        } else {
+          prev[cur] = 1
+        }
+        return prev
+      }, {})
+    })
+    console.log(changeNameNum(nameArr))
+
+    // 利用reduce 数组去重
+    var arr3 = [1, 2, 3, 4, 5, 5, 6, 7, 4, 4, 4, 45, 5, 6, 7, 9]
+
+    var resNew = arr3.reduce((prev, cur) => {
+      if (prev.includes(cur)) {
+        return prev
+      } else {
+        return prev.concat(cur)
+      }
+    }, [])
+    console.log(resNew)
   </script>
 </body>
 

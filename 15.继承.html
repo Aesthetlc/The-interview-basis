@@ -13,6 +13,8 @@
     <script>
         window.onload = function () {
             // es5 继承
+            // 原型链继承   缺点：修改一个就会改变另外一个
+            // 构造函数继承  缺点：不能继承父类原型上的方法属性
             function Person(name, age) {
                 this.name = name
                 this.age = age

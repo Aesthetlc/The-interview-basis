@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // alert(i)  //undefined
+        // var i = 10; 
+
+
+        // var uname = 'jack'
+        // function change() {
+        //     alert(uname); //undefined
+        //     var uname = 'lily'
+        //     alert(uname) //lily
+        // }
+        // change()
+        // alert(uname) //jack
+
+
+        // var User = {
+        //     count: 1,
+        //     getCount: function () {
+        //         return this.count
+        //     }
+        // }
+        // console.log(User.getCount()) //undefined
+
+        // var func = User.getCount
+        // console.log(func())   // 1
+
+        function fn() {
+            this.a = 0;
+            this.b = function () {
+                alert(this.a)
+            }
+        }
+        fn.prototype = {
+            b: function () {
+                this.a = 20
+                alert(this.a)   //0
+            },
+            c: function () {
+                this.a = 30
+                alert(this.a)   //30
+            }
+        }
+
+        var myfn = new fn()
+        myfn.b()
+        myfn.c()
+
+
+        //类原型的重定向：会失去constructor，原始的原型对象上的属性方法会被新的原型对象覆盖，内置类原型无法重定向
+        //var my_fun=new fun(); => { a:0 , b: function(){ alert(this.a)}}
+        //my_fun.b(); => 此时 this=> my_fun ， 所以结果为"0"
+        //my_fun.c(); => 此时my_fun中没有c这个属性，去原型中查找，打印结果为“30”
+
+    </script>
+</body>
+
+</html>

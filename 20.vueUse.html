@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vueLoading</title>
+  <title>vueUse</title>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
   <style>
     #loading-wrapper {
@@ -32,32 +32,37 @@
   </div>
 
   <script>
-    const LoadingComponent = Vue.extend({
-      template: '<div id="loading-wrapper">{{msg}}</div>',
-      props: {
-        msg: {
-          type: String,
-          default: 'loading....'
-        }
-      }
-    })
-    function Loading(msg) {
-      const div = document.createElement('div')
-      div.setAttribute('id', 'loading-wrapper')
-      document.body.append(div)
-      new LoadingComponent({
-        props: {
-          msg: {
-            type: String,
-            default: msg
+    const loadingPlugin = {
+      install: function (vm) {
+        const LoadingComponent = vm.extend({
+          template: '<div id="loading-wrapper">{{msg}}</div>',
+          props: {
+            msg: {
+              type: String,
+              default: 'loading....'
+            }
+          }
+        })
+        function Loading(msg) {
+          const div = document.createElement('div')
+          div.setAttribute('id', 'loading-wrapper')
+          document.body.append(div)
+          new LoadingComponent({
+            props: {
+              msg: {
+                type: String,
+                default: msg
+              }
+            }
+          }).$mount('#loading-wrapper')
+          return function () {
+            document.body.removeChild(document.getElementById('loading-wrapper'))
           }
         }
-      }).$mount('#loading-wrapper')
-      return function () {
-        document.body.removeChild(document.getElementById('loading-wrapper'))
+        vm.prototype.$loading = Loading
       }
     }
-    Vue.prototype.$loading = Loading
+    Vue.use(loadingPlugin)
     new Vue({
       el: '#root',
       methods: {

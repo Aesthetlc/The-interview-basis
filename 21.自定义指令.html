@@ -8,14 +8,13 @@
   <title>自定义指令</title>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
   <style>
-
+   aa {
+     position: absolute;
+   }
   </style>
 </head>
 
 <body>
-  <!-- 需求 -->
-  <!-- 希望可以自定义像 this.$on   this.$emit  this.$set 这种方式实现一个loging    -->
-  <!-- this.$loading('正在加载....') -->
   <div id="loading">
     <div v-loading="isLoading">
       <button @click="showLoading">加载</button>
@@ -33,6 +32,8 @@
           div.style.position = 'absolute'
           div.style.top = 0
           div.style.left = 0
+          div.style.bottom = 0
+          div.style.right = 0
           div.style.width = '100%'
           div.style.height = '100%'
           div.style.display = 'flex'

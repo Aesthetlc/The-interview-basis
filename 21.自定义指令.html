@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义指令</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- 需求 -->
+  <!-- 希望可以自定义像 this.$on   this.$emit  this.$set 这种方式实现一个loging    -->
+  <!-- this.$loading('正在加载....') -->
+  <div id="loading">
+    <div v-loading="isLoading">
+      <button @click="showLoading">加载</button>
+    </div>
+  </div>
+
+  <script>
+
+    Vue.directive('loading', {
+      update(el, binding, vnode) {
+        if (binding.value) {
+          const div = document.createElement('div')
+          div.innerText = '加载中...'
+          div.setAttribute('id', 'loadingShow')
+          div.style.position = 'absolute'
+          div.style.top = 0
+          div.style.left = 0
+          div.style.width = '100%'
+          div.style.height = '100%'
+          div.style.display = 'flex'
+          div.style.justifyContent = 'center'
+          div.style.alignItems = 'center'
+          div.style.color = 'white'
+          div.style.background = 'rgba(0,0,0,.7)'
+          document.body.append(div)
+        } else {
+          document.body.removeChild(document.getElementById('loadingShow'))
+        }
+      }
+    })
+
+    new Vue({
+      el: '#loading',
+      data() {
+        return {
+          isLoading: false
+        }
+      },
+      methods: {
+        showLoading() {
+          this.isLoading = true
+          setTimeout(() => {
+            this.isLoading = false
+          }, 2000);
+        }
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>

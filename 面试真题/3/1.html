@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如何向Array对象添加自定义方法，让下面的代码可以运行？
+        var arr = [1, 2, 3, 4, 5]
+        Array.prototype.average = function () {
+            let arr = arguments[0]
+            let sum = arr.reduce((pure, cur) => {
+                return pure + cur
+            }, 0)
+            return sum / arr.length
+        }
+        var avg = arr.average(arr)
+        console.log(avg)
+
+        // 判断一个字符串中出现次数最多的字符，统计这个次数
+        var str = 'asdfssaadddaaaaasasasddddassasasddd'
+        let splitArr = str.split('')
+        let splitObj = splitArr.reduce((pure, cur) => {
+            if (cur in pure) {
+                pure[cur]++
+            } else {
+                pure[cur] = 1
+            }
+            return pure
+        }, {})
+        console.log(splitObj)
+
+        // 便些一个可以执行如下操作的函数
+        // var addSix = createBase(6)
+        // addSix(10)
+        // addSix(21)
+        function createBase(baseNumber) {
+            return function (N) {
+                // 我们在这里访问 baseNumber，即使它是在这个函数之外声明的。
+                // JavaScript 中的闭包允许我们这么做。
+                return baseNumber + N;
+            }
+        }
+
+        var addSix = createBase(6);
+        addSix(10);
+        console.log(addSix(10))
+    </script>
+</body>
+
+</html>

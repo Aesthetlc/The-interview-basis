@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <style>
+        .sanjiao {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid red;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            margin: 20px;
+            background: red;
+            border: 20px solid black;
+            box-sizing: border-box;
+        }
+
+
+        /* 标准模型 */
+        /* box-sizing:content-box; */
+        /*IE模型*/
+        /* box-sizing:border-box; */
+    </style>
+</head>
+
+<body>
+    <!-- 实现不使用 border 画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果 -->
+    <div style="height:1px;overflow:hidden;background:red"></div>
+    <!-- 画一个三角 -->
+    <div class="sanjiao"></div>
+    <!-- 盒模型 -->
+    <div class="box"></div>
+    <p>宏任务：整体代码 script，setTimeout，setInterval</p>
+    <p>微任务：Promise，process.nextTick</p>
+
+</body>
+
+</html>

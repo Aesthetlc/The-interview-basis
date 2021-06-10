@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手撕call</title>
+</head>
+
+<body>
+    <script>
+        // 思路：将要改变this指向的方法挂到目标this上执行并返回
+        Function.prototype.mycall = function (context) {
+            if (typeof this !== 'function') {
+                throw new TypeError('not a function')
+            }
+            context = context || window
+            context.fn = this
+            let arg = [...arguments].slice(1)
+            let result = context.fn(...arg)
+            delete context.fn
+            return result
+        }
+    </script>
+</body>
+
+</html>

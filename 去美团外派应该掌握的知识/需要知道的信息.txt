@@ -1,0 +1,45 @@
+防抖节流，
+eslint原理，    -------------------------?
+vueX原理、     -------------------------?
+BDD TDD、(单元测试)
+渐进增强和优雅降级、
+webpack、
+git分支冲突如何解决、
+ts、
+CommonJS -----------------------?
+bind，call，apply有什么区别，
+bind，call，apply的怎么使函数立即执行，
+babel，
+变量，
+this，
+堆和栈，
+new    Object，
+vue-loader，
+行内元素是什么？
+块级元素是什么？
+有什么区别？ 独占一行，不独占一行
+HTML 渲染的过程。不太清楚。
+sessionStorage 和 localStorage，
+渐进增强和平稳退化。低端浏览器实现低端功能，高阶浏览器实现拓展功能/交互。平稳退化，
+CSS position: 固定定位，相对定位，绝对定位。
+css3 特性？圆角？动画？阴影？ css3。
+选择器权重规则，id > .class > tag   ???? 不知道了。
+js 有哪些数据类型？基本能答出来。
+原型链，基本能打出来。
+map 和 set 用过吗？用过。set 去重，map 有点像对象。map 和对象有什么区别？不知道。
+weakMap 和 map 有什么区别？不知道。
+es6 新特性？ map, filter, ...语法， promise。
+map,filter 和 pop, push 本质区别？一个改变原始对象，一个不改变。 
+Promise 内部原理不太清楚。
+class 有没有用过？继承的过程是怎样的？原型链。
+for of, for in 操作符的区别？ for in 遍历对象......返回 key 值。for of 遍历数组。
+闭包。 概念说的挺清晰。用途没说明白。
+() => {} 和 function 有什么区别？this 指向，不能构造，不能 new。
+用过 ts 吗？没有。
+mvvm 视图，视图模型，模型， model <-> view。
+mvvm 相比于刀耕火种的开发方式，有哪些好处？声明式，
+eslint 怎么运作的？配置规则。原理是什么？不太清楚。
+Node.js 本地写文件，读文件。其他没写过。
+webpack 打包。写过插件吗？写过？写的什么类型？记不清了。。。plugin 和 loader 有什么区别？
+umd, cmd, esmodule  区别？不知道。卡壳。
+前端项目发布是什么流程？打包，提服务器 (SVN，路径+版本号)，测试。

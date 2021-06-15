@@ -2,27 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>手撕call</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手撕call</title>
 </head>
 
 <body>
-    <script>
-        // 思路：将要改变this指向的方法挂到目标this上执行并返回
-        Function.prototype.mycall = function (context) {
-            if (typeof this !== 'function') {
-                throw new TypeError('not a function')
-            }
-            context = context || window
-            context.fn = this
-            let arg = [...arguments].slice(1)
-            let result = context.fn(...arg)
-            delete context.fn
-            return result
-        }
-    </script>
+  <script>
+    function show() {
+      console.log(this)
+    }
+    // 思路：将要改变this指向的方法挂到目标this上执行并返回
+    Function.prototype.myCall = function (context) {
+      if (typeof this !== 'function') {
+        throw new TypeError('not a function')
+      }
+      context = context || window
+      context.fn = this
+      let arg = [...arguments].slice(1)
+      let result = context.fn(...arg)
+      delete context.fn
+      return result
+    }
+    show.myCall({ name: 'abc' }, 'a', 'b');
+
+    Function.prototype.myApply = function (context) {
+      if (typeof this !== 'function') {
+        throw new TypeError('not a function')
+      }
+      context = context || window
+      context.fn = this
+      if (arguments[1]) {
+        result = context.fn(...arguments[1])
+      } else {
+        result = context.fn()
+      }
+      delete context.fn
+      return result
+    }
+
+    show.myApply({ name: 'abc' }, [1, 2, 3, 4]);
+
+    Function.prototype.mybind = function (context,...arg) {
+      if (typeof this !== 'function') {
+        throw new TypeError('Error')
+      }
+      // let arg = [...arguments].splice(1);
+
+      return (...arg1) => {
+        context.fn = this
+        console.log((arg.concat(arg1)));
+        context.fn(arg.concat(arg1));
+        delete context.fn
+      }
+    }
+
+    let bind = show.mybind({ name: 'abc' }, 1, 2, 3, 54, 6)
+    bind('99','www')
+
+  </script>
 </body>
 
 </html>
